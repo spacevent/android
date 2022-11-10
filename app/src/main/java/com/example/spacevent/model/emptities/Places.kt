@@ -1,6 +1,5 @@
 package com.example.spacevent.model.emptities
 
-import com.example.spacevent.model.database.Review
 import com.google.firebase.firestore.DocumentReference
 import java.util.UUID
 

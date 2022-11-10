@@ -1,4 +1,4 @@
-package com.example.spacevent.model.database
+package com.example.spacevent.model.emptities
 
 @kotlinx.serialization.Serializable
 data class Review(
