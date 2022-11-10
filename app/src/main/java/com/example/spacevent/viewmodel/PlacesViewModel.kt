@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spacevent.model.database.PlacesDataSource
+import com.example.spacevent.model.emptities.Places
 import com.example.spacevent.model.emptities.Review
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ListenerRegistration
@@ -16,16 +17,46 @@ class PlacesViewModel : ViewModel() {
     val reviews: LiveData<List<Review>>
         get() = _reviews
 
-    private val placesDataSources = PlacesDataSource
-    private lateinit var listenerPlaces: ListenerRegistration
+    private val _places by lazy { MutableLiveData<List<Places>>() }
+    val places: LiveData<List<Places>>
+        get() = _places
 
-    fun getPlaces() = placesDataSources.places
+    private val _error by lazy {  MutableLiveData<String>() }
+    val error: LiveData<String>
+        get() = _error
+
+    private fun showError() {
+        _error.value = "Ошибка сервера при обновлении, попробуйте еще раз"
+    }
+
+    private val placesDataSources = PlacesDataSource
+    private lateinit var listener: ListenerRegistration
 
     fun enableListenerPlaces() {
-        listenerPlaces = placesDataSources.getListenerPlaces()
+        val query = PlacesDataSource.getQueryPlaces()
+
+        listener = query.addSnapshotListener { value, error ->
+            if (value != null) {
+                _places.value = value.toObjects(Places::class.java)
+            } else {
+                showError()
+            }
+        }
+    }
+
+    fun enableListenerReviews(placeId: String) {
+        val query = PlacesDataSource.getQueryReviews(placeId)
+
+        listener = query.addSnapshotListener { value, error ->
+            if (value != null) {
+                _reviews.value = value.toObjects(Review::class.java)
+            } else {
+                showError()
+            }
+        }
     }
 
     fun disableListener() {
-        listenerPlaces.remove()
+        listener.remove()
     }
 }

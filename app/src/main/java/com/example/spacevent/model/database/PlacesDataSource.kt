@@ -10,29 +10,13 @@ import kotlinx.coroutines.Dispatchers
 
 object PlacesDataSource {
     private val db = FirebaseFirestore.getInstance()
-    private val dispatcher = Dispatchers.IO
 
-    private val _places = MutableLiveData(emptyList<Places>())
-    val places: LiveData<List<Places>>
-        get() = _places
-
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String>
-        get() = _error
-
-    private fun getQueryPlaces(): Query {
+    fun getQueryPlaces(): Query {
         return db.collection("places")
     }
 
-    fun getListenerPlaces(): ListenerRegistration {
-        val query = getQueryPlaces()
-
-        return query.addSnapshotListener { value, error ->
-            if (value != null) {
-                _places.value = value.toObjects(Places::class.java)
-            } else {
-                _error.value = "Ошибка сервера при обновлении, попробуйте еще раз"
-            }
-        }
+    fun getQueryReviews(placeId: String): Query {
+        return db.collection("places").document(placeId).collection("reviews")
     }
+
 }
