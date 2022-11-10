@@ -19,8 +19,8 @@ class PlacesViewModel : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
-    private fun showError() {
-        _error.value = "Ошибка сервера при обновлении, попробуйте еще раз"
+    private fun showError(message: String) {
+        _error.value = message
     }
 
     private val placesDataSources = PlacesDataSource
@@ -33,9 +33,17 @@ class PlacesViewModel : ViewModel() {
             if (value != null) {
                 _places.value = value.toObjects(Place::class.java)
             } else {
-                showError()
+                showError("Ошибка сервера при обновлении списка площадок")
             }
         }
+    }
+
+    fun createPlace(place: Place) = viewModelScope.launch {
+        placesDataSources.createPlace(place)
+            .addOnSuccessListener {}
+            .addOnFailureListener {
+                showError("Ошибка создания площадки")
+            }
     }
 
     fun disableListener() {
