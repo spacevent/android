@@ -13,6 +13,6 @@ data class Place(
     val images: List<String> = emptyList(),
     val logo: String = "",
     val name: String = "",
-    val rating: Double = 0.0,
+    val rating: List<Double> = emptyList(),
     val videous: List<String> = emptyList()
 )
