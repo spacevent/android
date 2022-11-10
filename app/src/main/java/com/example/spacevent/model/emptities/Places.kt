@@ -15,6 +15,5 @@ data class Places(
     val logo: String = "",
     val name: String = "",
     val rating: Double = 0.0,
-    val reviews: List<DocumentReference> = emptyList(),
     val videous: List<String> = emptyList()
 )
