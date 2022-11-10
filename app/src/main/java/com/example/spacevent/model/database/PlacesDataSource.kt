@@ -3,6 +3,7 @@ package com.example.spacevent.model.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.spacevent.model.emptities.Places
+import com.example.spacevent.model.emptities.Review
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
 import kotlinx.coroutines.Dispatchers
@@ -19,25 +20,19 @@ object PlacesDataSource {
     val error: LiveData<String>
         get() = _error
 
-    private lateinit var snapshotListenerPlaces: ListenerRegistration
-
     private fun getQueryPlaces(): Query {
         return db.collection("places")
     }
 
-    fun enableSnapshotListenerPlaces() {
+    fun getListenerPlaces(): ListenerRegistration {
         val query = getQueryPlaces()
 
-        snapshotListenerPlaces = query.addSnapshotListener { value, error ->
+        return query.addSnapshotListener { value, error ->
             if (value != null) {
                 _places.value = value.toObjects(Places::class.java)
             } else {
                 _error.value = "Ошибка сервера при обновлении, попробуйте еще раз"
             }
         }
-    }
-
-    fun disableSnapshotListenerPlaces() {
-        snapshotListenerPlaces.remove()
     }
 }
