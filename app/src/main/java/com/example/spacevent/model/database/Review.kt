@@ -1,8 +1,9 @@
 package com.example.spacevent.model.database
 
+@kotlinx.serialization.Serializable
 data class Review(
-    val date: String,
-    val description: String,
-    val evaluation: Double,
-    val user: String
+    val date: String = "",
+    val description: String = "",
+    val evaluation: Double = 0.0,
+    val user: String = ""
 )
