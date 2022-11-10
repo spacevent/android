@@ -1,12 +1,9 @@
 package com.example.spacevent.model.database
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.spacevent.model.emptities.Places
+import com.example.spacevent.model.emptities.Place
 import com.example.spacevent.model.emptities.Review
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
-import kotlinx.coroutines.Dispatchers
 
 object PlacesDataSource {
     private val db = FirebaseFirestore.getInstance()
@@ -19,4 +16,13 @@ object PlacesDataSource {
         return db.collection("places").document(placeId).collection("reviews")
     }
 
+    suspend fun createPlace(place: Place): Task<Void> {
+        return db.collection("places").document(place.id).set(place)
+    }
+
+    suspend fun createReview(placeId: String, review: Review): Task<Void> {
+        return db.collection("places")
+            .document(placeId).collection("reviews")
+            .document(review.user).set(review)
+    }
 }
