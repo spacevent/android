@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spacevent.model.database.PlacesDataSource
-import com.example.spacevent.model.emptities.Place
 import com.example.spacevent.model.emptities.Review
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.launch
