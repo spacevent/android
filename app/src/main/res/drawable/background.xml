@@ -1,0 +1,61 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="355dp"
+    android:viewportWidth="360"
+    android:viewportHeight="355">
+  <path
+      android:pathData="M0,308H291V355H20C8.95,355 0,346.05 0,335V308Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFA149"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M291,245H360V335C360,346.05 351.05,355 340,355H291V245Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFC107"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M291,59H360V246H291V59Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFE69B"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M0,123H291V310H0V123Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FF9800"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M39,123H184V180H39V123Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFDF8B"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M39,123H184V308H39V123Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#C58E00"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M290,61h36v52h-36z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFDE7A"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M291,5H340C351.05,5 360,13.95 360,25V61H291V5Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFEB3B"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M0,20C0,8.95 8.95,0 20,0H291V123H0V20Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFE28A"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M39,13H108V123H39V13Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFF171"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M72.5,88.5V19.5H182.5V88.5H72.5Z"
+      android:strokeAlpha="0.3"
+      android:fillColor="#FFA149"
+      android:fillAlpha="0.3"/>
+</vector>
