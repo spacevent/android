@@ -11,7 +11,7 @@ object PlacesDataSource {
     private val db = FirebaseFirestore.getInstance()
 
     fun getQueryPlaces(): Query {
-        return db.collection("regions ")
+        return db.collection("regions")
             .document("Saint-Petersburg")
             .collection("cities")
             .document("Saint-Petersburg")
