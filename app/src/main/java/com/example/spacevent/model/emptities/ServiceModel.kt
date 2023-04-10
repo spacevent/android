@@ -8,7 +8,7 @@ data class ServiceModel(
         val profession: String = "loft",
         val category: String = "",
         val amountOfReviews: Int = 0,
-        val overallRating: Int = 0,
+        val reviews: Int = 0,
         val numericalParameters: Map<String, Int> = emptyMap<String, Int>(),
         val workingHours: List<String> = emptyList(),
         val sellingText: String = "",
@@ -17,7 +17,7 @@ data class ServiceModel(
         val otherServices: List<Query> = emptyList(),
         val contacts: Map<String, String> = emptyMap<String, String>(),
         val address: String = "",
-        val images: List<String> = emptyList(),
+        val photos: List<String> = emptyList(),
         val videos: List<String> = emptyList()
 )
 data class Item(val name: String = "")
