@@ -30,9 +30,9 @@ class ServiceViewModel : ViewModel() {
         val query = PlacesDataSource.getQueryPlaces()
 
         listener = query.addSnapshotListener { value, error ->
+
             if (value != null) {
                 _places.value = value.toObjects(ServiceModel::class.java)
-                Log.i("getPlaces", _places.value.toString())
             } else {
                 showError("Ошибка сервера при обновлении списка площадок")
             }
