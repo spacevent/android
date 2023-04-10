@@ -2,7 +2,11 @@ package com.example.spacevent.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val Yellow500 = Color(0xFFFFE28A)
+val Yellow700 = Color(0xFFFFA149)
+val Purple200 = Color(0xFFFFEEFB)
+val Purple500 = Color(0xFFB097AA)
+val PurpleAlpha = Color(0x81B097AA)
+val Purple700 = Color(0xFF533D4E)
+val Blue = Color(0xFF263A60)
+val Alpha = Color(0x263A60)
