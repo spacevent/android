@@ -18,7 +18,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun NumberCharacteristicsView(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    numericalParameters: Map<String, Int>
 ) {
     Card(
         shape = RoundedCornerShape(32.dp),
@@ -33,10 +34,10 @@ fun NumberCharacteristicsView(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            for (i in 1..3) {
+            numericalParameters.onEachIndexed { index, entry ->
                 Column {
                     Text(
-                        "8",
+                        entry.value.toString(),
                         style = MaterialTheme.typography.h5,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
@@ -44,15 +45,15 @@ fun NumberCharacteristicsView(
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        "Количество комнат",
+                        entry.key,
                         color = Color.White,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.width(90.dp)
+                        modifier = Modifier.width(97.dp)
                     )
                 }
 
-                if (i != 3) Spacer(
+                if (index != numericalParameters.size - 1) Spacer(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
                         .fillMaxHeight(0.5f)
