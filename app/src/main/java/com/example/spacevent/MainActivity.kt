@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.spacevent.ui.screens.detailService.CardCharacteristicsView
 import com.example.spacevent.ui.screens.detailService.CommonInformationDetailService
+import com.example.spacevent.ui.screens.detailService.RatesScreen
 import com.example.spacevent.ui.theme.PurpleAlpha
 import com.example.spacevent.ui.theme.SpaceventTheme
 import com.example.spacevent.viewmodel.ServiceViewModel
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
                                 currentPage = (currentPage + 1) % 2
 
                             })*/
-                            HorizontalPager(count = 2, state = state) { indexPage ->
+                            HorizontalPager(count = 3, state = state) { indexPage ->
                                 when (indexPage) {
                                     0 -> CommonInformationDetailService(
                                         "https://i.pinimg.com/564x/e0/f6/46/e0f6469552c6aead5a8a7ca8add29354.jpg",
@@ -56,11 +57,13 @@ class MainActivity : ComponentActivity() {
 
                                     )
 
-                                    else -> CardCharacteristicsView(
+                                    1 -> CardCharacteristicsView(
                                         it[2].characteristics,
                                         it[2].rules,
                                         it[2].workingHours
                                     )
+
+                                    2 -> RatesScreen(it[2].id, viewModel)
                                 }
                             }
 

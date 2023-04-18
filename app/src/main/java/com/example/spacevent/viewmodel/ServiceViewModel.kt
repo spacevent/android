@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spacevent.model.database.PlacesDataSource
+import com.example.spacevent.model.emptities.Rate
 import com.example.spacevent.model.emptities.ServiceModel
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.launch
@@ -18,6 +19,10 @@ class ServiceViewModel : ViewModel() {
     private val _error by lazy { MutableLiveData<String>() }
     val error: LiveData<String>
         get() = _error
+
+    private val _rates by lazy { MutableLiveData<List<Rate>>(emptyList()) }
+    val rates: LiveData<List<Rate>>
+        get() = _rates
 
     private fun showError(message: String) {
         _error.value = message
@@ -42,6 +47,14 @@ class ServiceViewModel : ViewModel() {
     fun createPlace(serviceModel: ServiceModel) = viewModelScope.launch {
         placesDataSources.createPlace(serviceModel)
             .addOnSuccessListener {}
+            .addOnFailureListener {
+                showError("Ошибка создания площадки")
+            }
+    }
+
+    fun getRates(serviceId: String) = viewModelScope.launch {
+        placesDataSources.getRates(serviceId)
+            .addOnSuccessListener { _rates.value = it.toObjects(Rate::class.java) }
             .addOnFailureListener {
                 showError("Ошибка создания площадки")
             }
