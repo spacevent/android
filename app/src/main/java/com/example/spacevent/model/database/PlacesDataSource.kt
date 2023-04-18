@@ -31,6 +31,14 @@ object PlacesDataSource {
                 .collection("places").add(serviceModel)
         }
 
+    suspend fun getRates(serviceId: String) = withContext(Dispatchers.IO) {
+        return@withContext db.collection("regions ")
+            .document("Saint-Petersburg")
+            .collection("cities")
+            .document("Saint-Petersburg")
+            .collection("places").document(serviceId).collection("rates").get()
+    }
+
     suspend fun updatePlace(placeId: String, changes: Map<String, Any>): Task<Void> {
         return db.collection("places").document(placeId).update(changes)
     }
