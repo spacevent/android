@@ -19,10 +19,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CardInformationText(
-    title: String,
-    items: List<String>,
-) {
+fun CardInformation(title: String, content: @Composable () -> Unit) {
     Box(contentAlignment = Alignment.BottomCenter) {
         Column(
             modifier = Modifier
@@ -42,19 +39,30 @@ fun CardInformationText(
                     .background(MaterialTheme.colors.surface)
                     .padding(vertical = 8.dp)
             )
-
-            val text = buildString {
-                items.forEach { append("● $it \n") }
-            }
-
-
-            Text(
-                text = text,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-                color = MaterialTheme.colors.onSurface
-            )
+            content()
         }
     }
+}
+
+@Composable
+fun CardInformationText(
+    title: String,
+    items: List<String>,
+) {
+    CardInformation(title = title) {
+
+        val text = buildString {
+            items.forEach { append("● $it \n") }
+        }
+
+
+        Text(
+            text = text,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+            color = MaterialTheme.colors.onSurface
+        )
+    }
+
 }
 
 @Composable
