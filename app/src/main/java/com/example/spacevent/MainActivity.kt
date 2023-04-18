@@ -12,9 +12,9 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.spacevent.ui.components.InputTextDialog
 import com.example.spacevent.ui.screens.detailService.CardCharacteristicsView
 import com.example.spacevent.ui.screens.detailService.CommonInformationDetailService
 import com.example.spacevent.ui.screens.detailService.PhotosScreen
@@ -25,7 +25,6 @@ import com.example.spacevent.viewmodel.ServiceViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalPagerApi::class)
@@ -35,18 +34,30 @@ class MainActivity : ComponentActivity() {
             val viewModel: ServiceViewModel = viewModel()
             SpaceventTheme {
                 viewModel.enableListenerPlaces()
+
                 val places by viewModel.places.observeAsState()
                 places?.let {
+
+                    LaunchedEffect(key1 = Unit, block = {
+                        viewModel.getRates(it[2].id)
+                    })
+                    val rates by viewModel.rates.observeAsState(emptyList())
+
                     if (it.isNotEmpty()) {
                         Box {
                             val state = rememberPagerState()
                             var currentPage by remember { mutableStateOf(0) }
-                            /*LaunchedEffect(key1 = currentPage, block = {
-                                delay(6000)
-                                state.animateScrollToPage(currentPage, 1f)
-                                currentPage = (currentPage + 1) % 2
+                            var isVisibleInputTextDialog by remember { mutableStateOf(false) }
 
-                            })*/
+                            if (isVisibleInputTextDialog && !rates.isNullOrEmpty()) {
+                                InputTextDialog(
+                                    service = it[2].name,
+                                    rates = rates,
+                                    onDismissRequest = { isVisibleInputTextDialog = false },
+                                    createRequest = {}
+                                )
+                            }
+
                             HorizontalPager(count = 4, state = state) { indexPage ->
                                 when (indexPage) {
                                     0 -> CommonInformationDetailService(
@@ -55,8 +66,7 @@ class MainActivity : ComponentActivity() {
                                         it[2].profession,
                                         it[2].numericalParameters,
                                         it[2].sellingText
-
-                                    )
+                                    ) { isVisibleInputTextDialog = true }
 
                                     1 -> CardCharacteristicsView(
                                         it[2].characteristics,
@@ -64,7 +74,10 @@ class MainActivity : ComponentActivity() {
                                         it[2].workingHours
                                     )
 
-                                    2 -> RatesScreen(it[2].id, viewModel)
+                                    2 -> RatesScreen(
+                                        it[2].id,
+                                        viewModel
+                                    ) { isVisibleInputTextDialog = true }
                                     3 -> PhotosScreen(it[2].photos)
                                 }
                             }

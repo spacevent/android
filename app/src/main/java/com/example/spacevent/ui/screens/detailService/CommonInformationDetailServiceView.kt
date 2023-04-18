@@ -24,7 +24,8 @@ fun CommonInformationDetailService(
     name: String,
     profession: String,
     numericalParameters: Map<String, Int>,
-    sellingText: String
+    sellingText: String,
+    showDialog: () -> Unit
 ) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         GlideImage(
@@ -44,7 +45,7 @@ fun CommonInformationDetailService(
                 .fillMaxSize()
                 .padding(top = 350.dp)
         ) {
-            CardContent(name, profession, sellingText)
+            CardContent(name, profession, sellingText, showDialog)
         }
 
         NumberCharacteristicsView(Modifier.padding(top = 320.dp), numericalParameters)
@@ -55,7 +56,8 @@ fun CommonInformationDetailService(
 private fun CardContent(
     name: String,
     profession: String,
-    sellingText: String
+    sellingText: String,
+    showDialog: () -> Unit
 ) {
     Column(
         Modifier
@@ -89,7 +91,7 @@ private fun CardContent(
         )
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { showDialog() },
             modifier = Modifier
                 .fillMaxWidth(0.7f)
                 .padding(top = 48.dp),
