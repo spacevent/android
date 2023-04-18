@@ -24,7 +24,7 @@ object PlacesDataSource {
 
     suspend fun createPlace(serviceModel: ServiceModel): Task<DocumentReference> =
         withContext(Dispatchers.IO) {
-            return@withContext db.collection("regions ")
+            return@withContext db.collection("regions")
                 .document("Saint-Petersburg")
                 .collection("cities")
                 .document("Saint-Petersburg")
@@ -32,7 +32,7 @@ object PlacesDataSource {
         }
 
     suspend fun getRates(serviceId: String) = withContext(Dispatchers.IO) {
-        return@withContext db.collection("regions ")
+        return@withContext db.collection("regions")
             .document("Saint-Petersburg")
             .collection("cities")
             .document("Saint-Petersburg")
