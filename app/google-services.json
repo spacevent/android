@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "944322145841",
+    "firebase_url": "https://spacevent-f686e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "spacevent-f686e",
+    "storage_bucket": "spacevent-f686e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944322145841:android:fac2290328b7bc2040ef10",
+        "android_client_info": {
+          "package_name": "com.example.spacevent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944322145841-dbamf6sqn4s9o8ug8nnr6u59gkhjh8fn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-xY5w_oI-EYmhjvfRByhowvD-kMMS48I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944322145841-dbamf6sqn4s9o8ug8nnr6u59gkhjh8fn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
